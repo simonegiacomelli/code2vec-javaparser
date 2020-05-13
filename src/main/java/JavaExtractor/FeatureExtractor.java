@@ -164,10 +164,7 @@ public class FeatureExtractor {
 
         Node commonNode = sourceStack.get(sourceStack.size() - commonPrefix);
         String commonNodeChildId = Common.EmptyString;
-        //Node node = commonNode.getParentNode().get();
-        Node node = Adapt.getParentNode(commonNode);
-//		Property parentNodeProperty = node.getData(Common.PropertyKey);
-        Property parentNodeProperty = Adapt.getData(node, Common.PropertyKey);
+        Property parentNodeProperty = Adapt.getData(Adapt.getParentNode(commonNode), Common.PropertyKey);
         String commonNodeParentRawType = Common.EmptyString;
         if (parentNodeProperty != null) {
             commonNodeParentRawType = parentNodeProperty.getRawType();
