@@ -16,7 +16,7 @@ public class App {
 	private static CommandLineValues s_CommandLineValues;
 
 	public static void main(String[] args) {
-		args = "--max_path_length 8 --max_path_width 2 --dir ../code2vec-satd/build-dataset/java-small2/test --num_threads 10".split(" ");
+		args = "--max_path_length 8 --max_path_width 2 --dir ../code2vec-satd/build-dataset/java-small/test --num_threads 10".split(" ");
 		try {
 			s_CommandLineValues = new CommandLineValues(args);
 		} catch (CmdLineException e) {
