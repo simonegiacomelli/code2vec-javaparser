@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import JavaExtractor.Adapt;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.DataKey;
 
@@ -59,7 +60,7 @@ public final class Common {
 	}
 
 	public static boolean isMethod(Node node, String type) {
-		Property parentProperty = node.getParentNode().get().getData(Common.PropertyKey);
+		Property parentProperty = Adapt.getData( node.getParentNode(),Common.PropertyKey);
 		if (parentProperty == null) {
 			return false;
 		}
