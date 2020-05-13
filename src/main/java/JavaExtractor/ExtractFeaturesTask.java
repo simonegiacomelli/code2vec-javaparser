@@ -34,28 +34,22 @@ public class ExtractFeaturesTask implements Callable<Void> {
     }
 
     public void processFile() {
-        String fn = filePath.toFile().getName() + " ";
         ArrayList<ProgramFeatures> features;
         try {
             features = extractSingleFile();
-        } catch (Exception e) {
-            String str1 = e.getClass().getName() + " " + e.getMessage();
-            String str2 = str1.replace("\n", "\\n");
-            System.out.println(fn + "FAILED\t" + str2);
+        } catch ( Exception e) {
             e.printStackTrace();
             return;
         }
         if (features == null) {
-            System.out.println(fn + "FAILED\tNULL");
             return;
         }
 
         String toPrint = featuresToString(features);
         if (toPrint.length() > 0) {
-            System.out.println(fn + "OK\t" + toPrint);
+            System.out.println(filePath.toFile().getName() + "\t" + toPrint);
 //            System.out.println(toPrint);
-        } else
-            System.out.println(fn + "FAILED\t toPrint.length()==0");
+        }
     }
 
     public ArrayList<ProgramFeatures> extractSingleFile() throws ParseException, IOException {

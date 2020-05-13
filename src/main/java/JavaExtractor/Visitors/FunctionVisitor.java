@@ -24,11 +24,11 @@ public class FunctionVisitor extends VoidVisitorAdapter<Object> {
 
 	private void visitMethod(MethodDeclaration node, Object obj) {
 		LeavesCollectorVisitor leavesCollectorVisitor = new LeavesCollectorVisitor();
-		leavesCollectorVisitor.visitDepthFirst(node);
+		leavesCollectorVisitor.visitPreOrder(node);
 		ArrayList<Node> leaves = leavesCollectorVisitor.getLeaves();
 
-		String normalizedMethodName = Common.normalizeName(node.getName(), Common.BlankWord);
-		ArrayList<String> splitNameParts = Common.splitToSubtokens(node.getName());
+		String normalizedMethodName = Common.normalizeName(node.getName().asString(), Common.BlankWord);
+		ArrayList<String> splitNameParts = Common.splitToSubtokens(node.getName().asString());
 		String splitName = normalizedMethodName;
 		if (splitNameParts.size() > 0) {
 			splitName = splitNameParts.stream().collect(Collectors.joining(Common.internalSeparator));
