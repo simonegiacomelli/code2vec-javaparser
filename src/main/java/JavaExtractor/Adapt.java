@@ -14,7 +14,7 @@ public class Adapt {
     }
 
     public static Property getData(Node node, DataKey<Property> propertyKey) {
-        if (node.containsData(propertyKey))
+        if (node != null && node.containsData(propertyKey))
             return node.getData(propertyKey);
         return null;
     }
