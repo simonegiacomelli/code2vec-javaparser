@@ -10,7 +10,6 @@ import java.util.concurrent.Callable;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.CompilationUnit;
 
 import JavaExtractor.Common.CommandLineValues;
 import JavaExtractor.Common.Common;
@@ -50,7 +49,7 @@ public class ExtractFeaturesTask implements Callable<Void> {
             return;
         }
 
-        String toPrint = featuresToString(features);
+        String toPrint = featuresToString(features, m_CommandLineValues);
         if (toPrint.length() > 0) {
             System.out.println(fn + "OK\t" + toPrint);
 //            System.out.println(toPrint);
@@ -73,7 +72,7 @@ public class ExtractFeaturesTask implements Callable<Void> {
         return features;
     }
 
-    public String featuresToString(ArrayList<ProgramFeatures> features) {
+    public static String featuresToString(ArrayList<ProgramFeatures> features, CommandLineValues m_commandLineValues) {
         if (features == null || features.isEmpty()) {
             return Common.EmptyString;
         }
@@ -85,7 +84,7 @@ public class ExtractFeaturesTask implements Callable<Void> {
 
             String toPrint = Common.EmptyString;
             toPrint = singleMethodfeatures.toString();
-            if (m_CommandLineValues.PrettyPrint) {
+            if (m_commandLineValues.PrettyPrint) {
                 toPrint = toPrint.replace(" ", "\n\t");
             }
             builder.append(toPrint);
