@@ -32,7 +32,7 @@ class ClientHandler(val client: Socket) {
     val out = DataOutputStream(client.getOutputStream())
     val inp = DataInputStream(client.getInputStream())
     fun serve() {
-        client.soTimeout = 30000
+        client.soTimeout = 120*1000
         while (true) {
             val id = inp.readChunkedString()
             val code = inp.readChunkedString()
