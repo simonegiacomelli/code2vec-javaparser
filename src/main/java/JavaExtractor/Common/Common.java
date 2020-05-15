@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import JavaExtractor.Adapt;
 import com.github.javaparser.ast.Node;
-import com.github.javaparser.ast.DataKey;
+import com.github.javaparser.ast.UserDataKey;
 
 import JavaExtractor.FeaturesEntities.ProgramNode;
 import JavaExtractor.FeaturesEntities.Property;
 
 public final class Common {
-	public static final DataKey<Property> PropertyKey = new DataKey<Property>() {
+	public static final UserDataKey<Property> PropertyKey = new UserDataKey<Property>() {
 	};
-	public static final DataKey<ProgramNode> ProgramNodeKey = new DataKey<ProgramNode>() {
+	public static final UserDataKey<ProgramNode> ProgramNodeKey = new UserDataKey<ProgramNode>() {
 	};
-	public static final DataKey<Integer> ChildId = new DataKey<Integer>() {
+	public static final UserDataKey<Integer> ChildId = new UserDataKey<Integer>() {
 	};
 	public static final String EmptyString = "";
 	public static final String UTF8 = "UTF-8";
@@ -54,13 +53,13 @@ public final class Common {
 	}
 
 	public static boolean isMethod(Node node) {
-		String type = node.getData(Common.PropertyKey).getType();
+		String type = node.getUserData(Common.PropertyKey).getType();
 
 		return isMethod(node, type);
 	}
 
 	public static boolean isMethod(Node node, String type) {
-		Property parentProperty = Adapt.getData( node.getParentNode(),Common.PropertyKey);
+		Property parentProperty = node.getParentNode().getUserData(Common.PropertyKey);
 		if (parentProperty == null) {
 			return false;
 		}
