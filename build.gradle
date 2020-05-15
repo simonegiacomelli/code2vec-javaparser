@@ -49,3 +49,11 @@ compileTestKotlin {
         jvmTarget = "1.8"
     }
 }
+
+task runSocketServer(type: JavaExec) {
+    group = "application"
+    main = 'JavaExtractor.SocketServer.AppKt'
+    standardInput = System.in
+    classpath = sourceSets.main.runtimeClasspath
+    args = []
+}
